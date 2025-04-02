@@ -2,8 +2,8 @@
 <html>
 <head>
  <!-- 
+ favicon is the markdown logo:
 -->
-    
 <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAADw8OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAEAAAAQAAEAERAAABARAQEREQAAEBEBAAEAAAAREREAAQAAABEAEQABAAAAEQARAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD//wAA3u8AAN7HAADSgwAA0u8AAMDvAADM7wAAzO8AAP//AAD//wAA//8AAP//AAD//wAA" rel="icon" type="image/x-icon">
 
 <!--
@@ -13,22 +13,21 @@ https://ace.c9.io/
 list of languages:
 https://cloud9-sdk.readme.io/docs/language-mode
 
-
 -->    
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script>
-            MathJax.Hub.Config({
-                tex2jax: {
-                inlineMath: [['$','$'], ['\\(','\\)']],
-                processEscapes: true,
-                processClass: "mathjax",
-                ignoreClass: "no-mathjax"
-                }
-            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
-        </script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true,
+        processClass: "mathjax",
+        ignoreClass: "no-mathjax"
+        }
+    });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
+</script>
 <title>README.md EDITOR</title>
 </head>
 <body>
@@ -36,12 +35,12 @@ https://cloud9-sdk.readme.io/docs/language-mode
 <h1>README.md</h1>
 
 <div id = "lightdarkbutton" class = "button">--> DARK MODE <--</div>
-<div id = "maineditor" contenteditable="true" spellcheck="false"></div>
-<div id = "displayscroll"></div>
+<div id = "editor" contenteditable="true" spellcheck="false"></div>
+<div id = "display"></div>
 
 <script>
 
-editor = ace.edit("maineditor");
+editor = ace.edit("editor");
 editor.setTheme("ace/theme/github");
 //editor.setTheme("ace/theme/vibrant_ink");
 //editor.getSession().setMode("ace/mode/html");
@@ -64,11 +63,11 @@ currentFile = "README.md";
 var httpc = new XMLHttpRequest();
 httpc.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        filedata = this.responseText;
-        rawhtml = converter.makeHtml(filedata);
-        document.getElementById("displayscroll").innerHTML = rawhtml;
+        markdowncode = this.responseText;
+        htmlcode = converter.makeHtml(markdowncode);
+        document.getElementById("display").innerHTML = htmlcode;
         MathJax.Hub.Typeset();//tell Mathjax to update the math
-        editor.setValue(filedata);
+        editor.setValue(markdowncode);
     }
 };
 httpc.open("GET", "load.php?filename=" + currentFile, true);
@@ -76,7 +75,7 @@ httpc.send();
 
 
 
-document.getElementById("maineditor").onkeyup = function(){
+document.getElementById("editor").onkeyup = function(){
     data = encodeURIComponent(editor.getSession().getValue());
     var httpc = new XMLHttpRequest();
     var url = "save.php";        
@@ -92,11 +91,11 @@ lightmode = true;
 document.getElementById("lightdarkbutton").style.color = "black";
 document.getElementById("lightdarkbutton").style.borderColor = "black";
 
-document.getElementById("displayscroll").style.backgroundColor = "white";
-document.getElementById("displayscroll").style.color = "black";        
+document.getElementById("display").style.backgroundColor = "white";
+document.getElementById("display").style.color = "black";        
 document.getElementById("lightdarkbutton").innerHTML = "DARK MODE";
 editor.setTheme("ace/theme/github");
-var links = document.getElementById("displayscroll").getElementsByTagName("a");
+var links = document.getElementById("display").getElementsByTagName("a");
 for(var index = 0;index < links.length;index++){
     links[index].style.color = "blue";
 }
@@ -107,11 +106,11 @@ document.getElementById("lightdarkbutton").onclick = function(){
         document.getElementById("lightdarkbutton").style.color = "black";
         document.getElementById("lightdarkbutton").style.borderColor = "black";
         document.getElementById("lightdarkbutton").style.backgroundColor = "white";
-        document.getElementById("displayscroll").style.backgroundColor = "white";
-        document.getElementById("displayscroll").style.color = "black";        
+        document.getElementById("display").style.backgroundColor = "white";
+        document.getElementById("display").style.color = "black";        
         document.getElementById("lightdarkbutton").innerHTML = "DARK MODE";
         editor.setTheme("ace/theme/github");
-        var links = document.getElementById("displayscroll").getElementsByTagName("a");
+        var links = document.getElementById("display").getElementsByTagName("a");
         for(var index = 0;index < links.length;index++){
             links[index].style.color = "blue";
         }
@@ -121,12 +120,12 @@ document.getElementById("lightdarkbutton").onclick = function(){
         document.getElementById("lightdarkbutton").style.color = "white";
         document.getElementById("lightdarkbutton").style.borderColor = "white";
         document.getElementById("lightdarkbutton").style.backgroundColor = "#101010";
-        document.getElementById("displayscroll").style.backgroundColor = "#101010";        
-        document.getElementById("displayscroll").style.color = "white";        
+        document.getElementById("display").style.backgroundColor = "#101010";        
+        document.getElementById("display").style.color = "white";        
         document.getElementById("lightdarkbutton").innerHTML = "LIGHT MODE";        
         editor.setTheme("ace/theme/vibrant_ink");
 
-        var links = document.getElementById("displayscroll").getElementsByTagName("a");
+        var links = document.getElementById("display").getElementsByTagName("a");
         for(var index = 0;index < links.length;index++){
             links[index].style.color = "#ff2cb4";
         }        
@@ -147,7 +146,7 @@ input{
 h1,h2,h3{
     text-align:center;
 }
-#maineditor{
+#editor{
     position:absolute;  
     left:1em;
     top:5em;
@@ -156,7 +155,7 @@ h1,h2,h3{
     font-size:1em;
     border:solid;
 }
-#displayscroll{
+#display{
     position:absolute;
     left:55%;
     right:1em;
@@ -168,7 +167,7 @@ h1,h2,h3{
     padding: 1em 1em 1em 1em;
     background-color:white;
 }
-#displayscroll img{
+#display img{
     max-width:70%;
     display:block;
     margin:auto;

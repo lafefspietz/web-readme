@@ -4,7 +4,7 @@ A web-based README.md editor with $\LaTeX$ plus Markdown converted to HTML.  Cod
 
 To run this, install the [xampp](https://www.apachefriends.org/) local web server, and then make the the project directory for any repository you wan to work on a sub directory of the main web direcctory(on Windows this will be c:\xampp\htdocs\). 
 
-Once you have a live instance of this repository it will be located at [http://localhost/web-readme/](http://localhost/web-readme/). To see how the HTML is updated, reload the browser.  To edit the index.html file, use the editor at [edit-index.html](edit-index.html).
+Once you have a live instance of this repository it will be located at [http://localhost/web-readme/](http://localhost/web-readme/). To see how the HTML is UPDATED, reload the browser.  To edit the index.html file, use the editor at [edit-index.html](edit-index.html).
 
 ## Files
 
@@ -20,3 +20,6 @@ Once you have a live instance of this repository it will be located at [http://l
  - [ace.js](https://ace.c9.io/)
  - [mathjax.js](https://www.mathjax.org/)
 
+## Information Flow Diagram
+
+![](information-flow-diagram.png)
