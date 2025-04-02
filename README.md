@@ -1,10 +1,10 @@
 # [web-readme](https://github.com/lafefspietz/web-readme/)
 
-A web-based README editor with $\LaTeX$ converted to HTML with mathjax.js Markdown conveted to HTML with showdown.js.  Code is formatted in the browser with the Ace.js editor.  A pair of PHP scripts save(save.php) and load(save.php) files. All operation is from the client side.
+A web-based README.md editor with $\LaTeX$ plus Markdown converted to HTML.  Code is formatted in the browser with the Ace.js editor.  A pair of PHP scripts save(save.php) and load(save.php) files using the JavaScript object [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest). 
 
-The JavaScript object [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) is used to pass information to and from the local file system.
+To run this, install the [xampp](https://www.apachefriends.org/) local web server, and then make the the project directory for any repository you wan to work on a sub directory of the main web direcctory(on Windows this will be c:\xampp\htdocs\). 
 
-To run this, install the [xampp](https://www.apachefriends.org/) local web server, and then make the project directory for the repository you are working on into a sub directory of the main web directory.
+Once you have a live instance of this repository it will be located at [http://localhost/web-readme/](http://localhost/web-readme/). To see how the HTML is updated, reload the browser.  To edit the index.html file, use the editor at [edit-index.html](edit-index.html).
 
 ## Files
 
@@ -19,3 +19,4 @@ To run this, install the [xampp](https://www.apachefriends.org/) local web serve
  - [showdown.js](https://showdownjs.com/)
  - [ace.js](https://ace.c9.io/)
  - [mathjax.js](https://www.mathjax.org/)
+
