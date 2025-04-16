@@ -23,3 +23,7 @@ Once you have a live instance of this repository it will be located at [http://l
 ## Information Flow Diagram
 
 ![](information-flow-diagram.png)
+
+## Qr Code to Github Repo:
+
+![](qrcode.png)
